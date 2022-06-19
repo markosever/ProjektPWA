@@ -1,0 +1,99 @@
+<?php
+error_reporting(0);
+
+$title=$_POST['title'];
+$about=$_POST['about'];
+$content=$_POST['content'];
+#$image=$_POST['pphoto'];
+$category=$_POST['category'];
+$date=date('d.m.Y.');
+
+$picture = $_FILES["uploadfile"]["name"];
+$tempname = $_FILES["uploadfile"]["tmp_name"];
+$folder = "image/" . $picture;
+
+#echo $filename;
+
+if(isset($_POST['archive'])) {
+    $archive=1;
+}
+else {
+    $archive=0;
+}
+ 
+$dbc = mysqli_connect("localhost", "root", "", "baza");
+mysqli_set_charset($dbc, "utf8");
+if ($dbc) {
+    #echo "Connected successfully";
+}
+
+$sql="INSERT INTO vijesti (datum, naslov, sazetak, tekst, slika, kategorija, arhiva) values (?, ?, ?, ?, ?, ?, ?)";
+/* Inicijalizira statement objekt nad konekcijom */
+$stmt=mysqli_stmt_init($dbc);
+/* Povezuje parametre statement objekt s upitom */
+if (mysqli_stmt_prepare($stmt, $sql)){
+/* Povezuje parametre i njihove tipove s statement objektom */
+mysqli_stmt_bind_param($stmt,'sssssis', $date, $title, $about, $content, $picture, $category, $archive);
+/* Izvršava pripremljeni upit */
+mysqli_stmt_execute($stmt);
+}
+        
+move_uploaded_file($tempname, $folder);
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="header">
+        <header>
+              
+            <nav>
+                <ul>
+                    <li><img src="images/logo.png" alt="" id="logo"></li>
+                    <li><a href="#" id="right">ADMINISTRACIJA</a></li>
+                    <li><a href="#" id="right">POLITIK</a></li>
+                    <li><a href="#" id="right">SPORT</a></li>
+                    <li><a href="#" id="right">HOME</a></li>
+                  </ul>
+            </nav>
+        </header>
+        
+    </div>
+    <hr class="zuto">
+
+    <div class="container" id="cont1">
+
+        <div class="naslovgore">
+            <h3>Sport</h3>
+        </div>
+
+    <h1>Dortmund und Bayern uben sich in Psychospielchen</h1>
+    <p>17.Mai 2019</p>
+    <img src="images/slika1.jpg" alt="" width="100%">
+    <p class="bold">
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quae expedita mollitia cumque ipsa veritatis veniam tenetur ex excepturi. Illo corrupti error rem hic quas facilis minus expedita! Ratione, iste architecto. Fugiat fugit eligendi voluptas autem quibusdam, quos aspernatur pariatur! Odio!
+    </p>
+    <br>
+    <br>
+    <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Quibusdam quisquam optio dignissimos maiores voluptas. Ab velit nam sapiente sint possimus sed aperiam itaque nihil odit quis inventore, reiciendis tempore ducimus adipisci vero tempora nemo totam repellat corrupti animi! Saepe quo, deleniti totam illum dolor, maxime rerum ex inventore asperiores nulla assumenda fugiat sed exercitationem tenetur ducimus voluptatibus id perferendis odio?
+    </p>
+    <br>
+    <p>
+        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Fugit perferendis maxime eveniet animi, doloremque accusamus alias adipisci non veniam fuga blanditiis ad! Beatae quos odit fuga nobis earum nisi, qui omnis adipisci quidem ratione ducimus necessitatibus! Impedit omnis qui suscipit id praesentium natus voluptate harum dolor temporibus, nesciunt obcaecati nam sapiente fugiat quaerat eius. Voluptas, cum expedita recusandae perspiciatis nam exercitationem omnis magnam aspernatur illum repudiandae modi, repellat necessitatibus adipisci aperiam explicabo at! Sint sunt sed quasi corporis vel dolores.
+    </p>
+
+    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Inventore similique ut molestiae quod odit, expedita quasi quas deserunt eveniet, voluptatibus ipsum nisi! Deleniti officiis, repellat quisquam odit et similique tenetur, fugit quaerat eveniet aperiam vitae. Vel temporibus doloribus perferendis animi non culpa blanditiis numquam sequi neque voluptates? Et aperiam assumenda cupiditate nesciunt at. Quae qui, repellat sequi id facilis asperiores ab temporibus doloribus debitis amet, ad recusandae veniam tenetur nisi, alias ipsam earum quod! Aliquid delectus assumenda ipsa recusandae possimus. Deleniti doloribus, alias nihil sapiente eaque rerum blanditiis aspernatur perspiciatis, necessitatibus nobis provident aut voluptatum consectetur dolor illo deserunt obcaecati officia odit. Saepe numquam, quia reprehenderit autem laudantium excepturi eius ipsa tempora quibusdam officiis nostrum at tempore similique fugiat quidem.</p>
+    <footer>
+        <p class="pfooter">@Marko Sever GMBH | ALLE RECHTE VORBEHALTEN</p>
+        <p class="dno pfooter">Content Management by InterRed</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Login</title>
+</head>
+<body>
+    <div id="header">
+        <header>
+            <nav>
+                <ul>
+                    <li><img src="images/logo.png" alt="" id="logo"></li>
+                    <li><a href="unos.html" id="right">UNOS</a></li>
+                    <li><a href="login.html" id="right">ADMINISTRACIJA</a></li>
+                    <li><a href="kategorija.php?id=politik" id="right">POLITIK</a></li>
+                    <li><a href="kategorija.php?id=sport" id="right">SPORT</a></li>
+                    <li><a href="index.php" id="right">HOME</a></li>
+                    
+                  </ul>
+            </nav>
+        </header>
+        
+    </div>
+    <hr class="zuto">
+    <div id="containerbody">
+        <div class="container" id="cont1">
+            <div class="naslovgore">
+                <h3>LOG IN</h3>
+            </div>
+            <form enctype="multipart/form-data" action="loginProvjera.php" method="POST">
+            
+            <div class="form-item">
+            <span id="porukaUsername" style="color: red;"></span>
+            <label for="content">Korisničko ime:</label>
+            
+            
+            <div class="form-field">
+            <input type="text" name="username" id="username" class="formfield-textual">
+            </div>
+            </div>
+            
+            <div class="form-item">
+            <span id="porukaPass" style="color: red;"></span>
+            <label for="pphoto">Lozinka: </label>
+            <div class="form-field">
+            <input type="password" name="pass" id="pass" class="formfield-textual">
+            </div>
+            </div>
+            <br>
+            <div class="form-item">
+            <button type="submit" value="Prijava" id="slanje">Prijava</button>
+            </div>
+            <br>
+            </form>
+        </div>
+    </div>
+
+            <script type="text/javascript">
+            document.getElementById("slanje").onclick = function(event) {
+            var slanjeForme = true;
+            
+            // Korisničko ime mora biti uneseno
+            var poljeUsername = document.getElementById("username");
+            var username = document.getElementById("username").value;
+            if (username.length == 0) {
+            slanjeForme = false;
+            poljeUsername.style.border="1px dashed red";
+            document.getElementById("porukaUsername").innerHTML="<br>Unesite korisničko ime!<br>";
+            } else {
+            poljeUsername.style.border="1px solid #ccc";
+            document.getElementById("porukaUsername").innerHTML="";
+            }
+            // Provjera podudaranja lozinki
+            var poljePass = document.getElementById("pass");
+            var pass = document.getElementById("pass").value;
+            
+            if (pass.length < 12) {
+            slanjeForme = false;
+            poljePass.style.border="1px dashed red";
+            document.getElementById("porukaPass").innerHTML="<br>Lozinka mora imati barem 12 znakova!<br>";
+            } else {
+            poljePass.style.border="1px solid #ccc";
+            document.getElementById("porukaPass").innerHTML="";
+            }
+            if (slanjeForme != true) {
+            event.preventDefault();
+            }
+            };
+            </script>
+
+    <footer>
+        <p class="pfooter">@Marko Sever GMBH | ALLE RECHTE VORBEHALTEN</p>
+        <p class="dno pfooter">Content Management by InterRed</p>
+       </footer>
+</body>
+</html>
+

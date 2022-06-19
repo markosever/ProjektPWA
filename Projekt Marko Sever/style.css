@@ -1,0 +1,98 @@
+body{
+
+    width: 100%;
+    margin: 0 auto;
+    background-color: white;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.zuto{
+    background-color:rgb(214, 214, 40);
+    border: none;
+    height: 1px;
+    margin: 0;
+}
+
+#header{
+    width: 60%;
+    margin: auto;
+    margin-top: 14px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  
+#right {
+    float: right;
+}
+  
+li a {
+    display: block;
+    color: black;
+    text-align: center;
+    padding: 30px;
+    text-decoration: none;
+}
+#logo{
+    float: left;
+    margin-top:7px;
+    width: 130px;
+}
+
+
+.container{
+    width: 60%;
+    margin: auto;
+    margin-top: 50px;
+    
+
+   
+}
+
+.naslovgore{
+    color: white;
+    text-decoration: underline;
+    margin: 0;
+    padding:6px;
+    background-color:rgb(238, 174, 35);
+}
+
+h3{
+    padding-left: 15px;
+}
+
+
+.slikacl{
+    height: 220px;
+    object-fit: cover;
+    margin:15px;
+    float: left;
+}
+
+.ptext{
+    margin-top:45px;
+}
+
+footer {
+    text-align: center;
+    padding: 3px;
+    background-color: grey;
+    color: white;
+}
+
+.containerbody{
+    width: 100%;
+    background-color: lightgray;
+}
+
+.bold{
+    font-weight: bold;
+}
+
+
+
+
